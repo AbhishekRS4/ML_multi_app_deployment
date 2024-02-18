@@ -3,6 +3,7 @@ import json
 import requests
 import streamlit as st
 
+
 def app_info():
     st.title("App info")
     st.markdown("_Task - Water Potability prediction_")
@@ -14,10 +15,9 @@ def app_info():
     st.write(
         "This application sends data to the FastAPI backend and retrieves the prediction."
     )
-    st.write(
-        "This project showcases the use of multi app deployment scenario."
-    )
+    st.write("This project showcases the use of multi app deployment scenario.")
     return
+
 
 def get_prediction(dict_feats):
     # get the BACKEND_HOSTNAME from the env variable
@@ -31,6 +31,7 @@ def get_prediction(dict_feats):
 
     result = requests.post(url, data=json.dumps(dict_feats), headers=headers)
     return result
+
 
 def water_potability_frontend():
     st.title("Enter the following features required for water potability prediction")
@@ -49,15 +50,15 @@ def water_potability_frontend():
     Turbidity = st.number_input("Turbidity", value=nan)
 
     dict_feats = {
-        "ph" : ph,
-        "Hardness" : Hardness,
-        "Solids" : Solids,
-        "Chloramines" : Chloramines,
-        "Sulfate" : Sulfate,
-        "Conductivity" : Conductivity,
-        "Organic_carbon" : Organic_carbon,
-        "Trihalomethanes" : Trihalomethanes,
-        "Turbidity" : Turbidity,
+        "ph": ph,
+        "Hardness": Hardness,
+        "Solids": Solids,
+        "Chloramines": Chloramines,
+        "Sulfate": Sulfate,
+        "Conductivity": Conductivity,
+        "Organic_carbon": Organic_carbon,
+        "Trihalomethanes": Trihalomethanes,
+        "Turbidity": Turbidity,
     }
 
     st.write(dict_feats)
@@ -69,6 +70,7 @@ def water_potability_frontend():
         st.write(f"{json.loads(prediction.text)} \n")
 
     return
+
 
 app_modes = {
     "App Info": app_info,
@@ -85,6 +87,7 @@ def start_app():
 def main():
     start_app()
     return
+
 
 if __name__ == "__main__":
     main()
