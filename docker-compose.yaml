@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  # all the services run on the same network
+  ml-backend:
+    image: ml_water_potability_backend
+    # backend container image name
+  ml-frontend:
+    image: ml_water_potability_frontend
+    # frontend container image name
+    environment:
+      - BACKEND_HOSTNAME=ml-backend:5000
+      # map the backend host to which the frontend needs to connect to
+      # this is set as an env variable that can be accessed by the frontend app
+    ports:
+      - "8501:8501"
+      # the port mapping of the frontend
